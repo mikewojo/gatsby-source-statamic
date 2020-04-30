@@ -1,5 +1,4 @@
 const fetch = require('node-fetch');
-const queryString = require('query-string');
 const capitalizeName = require('./helpers/capitalize');
 
 exports.sourceNodes = async (

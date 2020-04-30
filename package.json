@@ -1,15 +1,37 @@
 {
   "name": "gatsby-source-statamic",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.1.0",
+  "description": "Gatsby plugin for sourcing data from Statamic CMS",
+  "author": "Robert Guss <robertguss@gmail.com>",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "babel src --out-dir . --ignore \"**/__tests__\"",
+    "prepare": "cross-env NODE_ENV=production npm run build",
+    "watch": "babel -w src --out-dir . --ignore \"**/__tests__\""
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
+    "@babel/runtime": "^7.9.2",
     "node-fetch": "^2.6.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "babel-preset-gatsby-package": "^0.4.0",
+    "cross-env": "^5.2.1"
+  },
+  "keywords": [
+    "gatsby",
+    "gatsby-plugin"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/robertguss/gatsby-source-statamic"
+  },
+  "license": "MIT",
+  "peerDependencies": {
+    "gatsby": "^2.2.0"
+  },
+  "engines": {
+    "node": ">=10.13.0"
   }
 }
