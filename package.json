@@ -31,6 +31,9 @@
   "peerDependencies": {
     "gatsby": "^2.2.0"
   },
+  "bugs": {
+    "url": "https://github.com/robertguss/gatsby-source-statamic/issues"
+  },
   "engines": {
     "node": ">=10.13.0"
   }
