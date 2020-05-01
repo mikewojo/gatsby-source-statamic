@@ -26,10 +26,10 @@ exports.sourceNodes = async (
    *
    * @returns {Node} - Gatsby Node
    */
-  if (configOptions.customUrls) {
-    for (const key in configOptions.customUrls) {
+  if (customUrls) {
+    for (const key in customUrls) {
       const customUrlName = key;
-      const apiUrl = configOptions.customUrls[key];
+      const apiUrl = customUrls[key];
       const response = await fetch(apiUrl);
       const { data } = await response.json();
 
@@ -56,9 +56,9 @@ exports.sourceNodes = async (
    *
    * @returns {Node} - Gatsby Node
    */
-  if (configOptions.collections && configOptions.collections.length) {
-    for (let i = 0; i < configOptions.collections.length; i++) {
-      const collectionName = configOptions.collections[i];
+  if (collections && collections.length) {
+    for (let i = 0; i < collections.length; i++) {
+      const collectionName = collections[i];
       const apiUrl = `${normalizedBaseUrl}/${restApiRoutePrefix}/collections/${collectionName}/entries`;
       const response = await fetch(apiUrl);
       const { data } = await response.json();
@@ -86,9 +86,9 @@ exports.sourceNodes = async (
    *
    * @returns {Node} - Gatsby Node
    */
-  if (configOptions.taxonomies && configOptions.taxonomies.length) {
-    for (let i = 0; i < configOptions.taxonomies.length; i++) {
-      const taxonomyName = configOptions.taxonomies[i];
+  if (taxonomies && taxonomies.length) {
+    for (let i = 0; i < taxonomies.length; i++) {
+      const taxonomyName = taxonomies[i];
       const apiUrl = `${normalizedBaseUrl}/${restApiRoutePrefix}/taxonomies/${taxonomyName}/terms`;
       const response = await fetch(apiUrl);
       const { data } = await response.json();
@@ -116,7 +116,7 @@ exports.sourceNodes = async (
    *
    * @returns {Node} - Gatsby Node
    */
-  if (configOptions.globals) {
+  if (globals) {
     const apiUrl = `${normalizedBaseUrl}/${restApiRoutePrefix}/globals`;
     const response = await fetch(apiUrl);
     const { data } = await response.json();
@@ -141,7 +141,7 @@ exports.sourceNodes = async (
    *
    * @returns {Node} - Gatsby Node
    */
-  if (configOptions.users) {
+  if (users) {
     const apiUrl = `${normalizedBaseUrl}/${restApiRoutePrefix}/users`;
     const response = await fetch(apiUrl);
     const { data } = await response.json();
@@ -166,9 +166,9 @@ exports.sourceNodes = async (
    *
    * @returns {Node} - Gatsby Node
    */
-  if (configOptions.assets && configOptions.assets.length) {
-    for (let i = 0; i < configOptions.assets.length; i++) {
-      const assetName = configOptions.assets[i];
+  if (assets && assets.length) {
+    for (let i = 0; i < assets.length; i++) {
+      const assetName = assets[i];
       const apiUrl = `${normalizedBaseUrl}/${restApiRoutePrefix}/assets/${assetName}`;
       const response = await fetch(apiUrl);
       const { data } = await response.json();
