@@ -1,6 +1,5 @@
-const fetch = require('node-fetch');
+const fetchStatamicResource = require('./helpers/fetchStatamicResource');
 const capitalizeName = require('./helpers/capitalize');
-const httpExceptionHandler = require(`./helpers/http-exception-handler`);
 const normalizeBaseUrl = require(`./helpers/normalize-base-url`);
 
 exports.sourceNodes = async (
@@ -26,12 +25,10 @@ exports.sourceNodes = async (
    */
   if (customUrls) {
     for (const key in customUrls) {
-      try {
-        const customUrlName = key;
-        const apiUrl = customUrls[key];
-        const response = await fetch(apiUrl);
-        const { data } = await response.json();
+      const customUrlName = key;
+      const data = await fetchStatamicResource(customUrls[key]);
 
+      if (data) {
         data.forEach((item) => {
           const customUrlNameCapitalized = capitalizeName(customUrlName);
 
@@ -47,8 +44,6 @@ exports.sourceNodes = async (
             },
           });
         });
-      } catch (e) {
-        httpExceptionHandler(e);
       }
     }
   }
@@ -63,8 +58,7 @@ exports.sourceNodes = async (
       try {
         const collectionName = collections[i];
         const apiUrl = `${normalizedBaseUrl}/${restApiRoutePrefix}/collections/${collectionName}/entries`;
-        const response = await fetch(apiUrl);
-        const { data } = await response.json();
+        const data = await fetchStatamicResource(apiUrl);
 
         data.forEach((item) => {
           const collectionNameCapitalized = capitalizeName(collectionName);
@@ -97,8 +91,7 @@ exports.sourceNodes = async (
       try {
         const taxonomyName = taxonomies[i];
         const apiUrl = `${normalizedBaseUrl}/${restApiRoutePrefix}/taxonomies/${taxonomyName}/terms`;
-        const response = await fetch(apiUrl);
-        const { data } = await response.json();
+        const data = await fetchStatamicResource(apiUrl);
 
         data.forEach((item) => {
           const taxonomyNameCapitalized = capitalizeName(taxonomyName);
@@ -129,8 +122,7 @@ exports.sourceNodes = async (
   if (globals) {
     try {
       const apiUrl = `${normalizedBaseUrl}/${restApiRoutePrefix}/globals`;
-      const response = await fetch(apiUrl);
-      const { data } = await response.json();
+      const data = await fetchStatamicResource(apiUrl);
 
       data.forEach((item) => {
         createNode({
@@ -158,8 +150,7 @@ exports.sourceNodes = async (
   if (users) {
     try {
       const apiUrl = `${normalizedBaseUrl}/${restApiRoutePrefix}/users`;
-      const response = await fetch(apiUrl);
-      const { data } = await response.json();
+      const data = await fetchStatamicResource(apiUrl);
 
       data.forEach((user) => {
         createNode({
@@ -189,8 +180,7 @@ exports.sourceNodes = async (
       try {
         const assetName = assets[i];
         const apiUrl = `${normalizedBaseUrl}/${restApiRoutePrefix}/assets/${assetName}`;
-        const response = await fetch(apiUrl);
-        const { data } = await response.json();
+        const data = await fetchStatamicResource(apiUrl);
 
         data.forEach((item) => {
           const assetNameCapitalized = capitalizeName(assetName);
