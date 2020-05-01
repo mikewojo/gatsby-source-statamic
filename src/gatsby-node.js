@@ -32,25 +32,25 @@ exports.sourceNodes = async (
       try {
         const response = await fetch(apiUrl);
         const { data } = await response.json();
+
+        data.forEach((item) => {
+          const customUrlNameCapitalized = capitalizeName(customUrlName);
+
+          createNode({
+            ...item,
+            id: createNodeId(`${customUrlNameCapitalized}-${item.id}`),
+            parent: null,
+            children: [],
+            internal: {
+              type: `${customUrlNameCapitalized}`,
+              content: JSON.stringify(item),
+              contentDigest: createContentDigest(item),
+            },
+          });
+        });
       } catch (e) {
         httpExceptionHandler(e);
       }
-
-      data.forEach((item) => {
-        const customUrlNameCapitalized = capitalizeName(customUrlName);
-
-        createNode({
-          ...item,
-          id: createNodeId(`${customUrlNameCapitalized}-${item.id}`),
-          parent: null,
-          children: [],
-          internal: {
-            type: `${customUrlNameCapitalized}`,
-            content: JSON.stringify(item),
-            contentDigest: createContentDigest(item),
-          },
-        });
-      });
     }
   }
 
