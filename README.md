@@ -74,11 +74,11 @@ query MyQuery {
 
 The naming conventions for various Statamic resources within GraphQL are as follows (using the example config above):
 
-| Statamic Resource | GraphQL Name                                                             |
-| ----------------- | ------------------------------------------------------------------------ |
-| customURLS        | the `key` of the customURLS object: ie `allFieldtypesTilesSortedReverse` |
-| collections       | `allCollectionDocs`, `allCollectionKnowledgeBase`, etc.                  |
-| taxonomies        | `allTaxonomyTags`, `allTaxonomyTypes`                                    |
-| globals           | `allGlobals`                                                             |
-| users             | `allUsers`                                                               |
-| assets            | `allAssetsMain`                                                          |
+| Statamic Resource | GraphQL Name                                                              |
+| ----------------- | ------------------------------------------------------------------------- |
+| customURLS        | the `key` of the customURLS object: ie `allFieldtypesTitlesSortedReverse` |
+| collections       | `allCollectionDocs`, `allCollectionKnowledgeBase`, etc.                   |
+| taxonomies        | `allTaxonomyTags`, `allTaxonomyTypes`                                     |
+| globals           | `allGlobals`                                                              |
+| users             | `allUsers`                                                                |
+| assets            | `allAssetsMain`                                                           |
