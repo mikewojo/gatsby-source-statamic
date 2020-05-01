@@ -19,10 +19,6 @@ exports.sourceNodes = async (
   const { createNode } = actions;
   const normalizedBaseUrl = normalizeBaseUrl(baseUrl);
 
-  // Gatsby adds a configOption that's not needed for this plugin, delete it
-
-  delete configOptions.plugins;
-
   /**
    * Custom URL's
    *
