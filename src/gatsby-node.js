@@ -1,5 +1,6 @@
 const fetch = require('node-fetch');
 const capitalizeName = require('./helpers/capitalize');
+const httpExceptionHandler = require(`./helpers/http-exception-handler`);
 
 exports.sourceNodes = async (
   { actions, createNodeId, createContentDigest },
@@ -30,7 +31,13 @@ exports.sourceNodes = async (
     for (const key in customUrls) {
       const customUrlName = key;
       const apiUrl = customUrls[key];
-      const response = await fetch(apiUrl);
+
+      try {
+        const response = await fetch(apiUrl);
+      } catch (e) {
+        httpExceptionHandler(e);
+      }
+
       const { data } = await response.json();
 
       data.forEach((item) => {
