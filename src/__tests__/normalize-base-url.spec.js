@@ -1,4 +1,4 @@
-const normalizeBaseUrl = require(`../helpers/normalize-base-url`);
+const normalizeBaseUrl = require(`../helpers/normalizeBaseUrl`);
 
 describe(`Normalize baseUrl`, () => {
   it(`Removes trailing slashes`, () => {
