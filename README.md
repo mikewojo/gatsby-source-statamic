@@ -19,8 +19,15 @@ plugins: [
 {
   resolve: `gatsby-source-statamic`,
   options: {
-    apiUrl: 'api',
-    baseUrl: `http://statamic-docs.test/`,
+    // The rest api route prefix that your Statamic site is using.
+    // If not set, it uses the default of 'api'
+    // https://statamic.dev/rest-api#customizing-the-api-url
+    restApiRoutePrefix: 'api',
+    /*
+     * The base URL of the Statamic site without the trailing slash. This is required.
+     * Example : 'http://statamic-docs.test'
+     */
+    baseUrl: `http://statamic-docs.test`,
     customUrls: {
       fieldtypesTitlesSortedReverse:
         'http://statamic-docs.test/api/collections/fieldtypes/entries?sort=-title',

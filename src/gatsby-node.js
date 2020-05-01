@@ -3,9 +3,19 @@ const capitalizeName = require('./helpers/capitalize');
 
 exports.sourceNodes = async (
   { actions, createNodeId, createContentDigest },
-  configOptions
+  {
+    restApiRoutePrefix = 'api',
+    baseUrl,
+    customUrls,
+    collections,
+    taxonomies,
+    globals,
+    users,
+    assets,
+  }
 ) => {
   const { createNode } = actions;
+  const normalizedBaseUrl = normalizeBaseUrl(baseUrl);
 
   // Gatsby adds a configOption that's not needed for this plugin, delete it
 
@@ -49,7 +59,7 @@ exports.sourceNodes = async (
   if (configOptions.collections && configOptions.collections.length) {
     for (let i = 0; i < configOptions.collections.length; i++) {
       const collectionName = configOptions.collections[i];
-      const apiUrl = `${configOptions.baseUrl}/${configOptions.apiUrl}/collections/${collectionName}/entries`;
+      const apiUrl = `${normalizedBaseUrl}/${restApiRoutePrefix}/collections/${collectionName}/entries`;
       const response = await fetch(apiUrl);
       const { data } = await response.json();
 
@@ -79,7 +89,7 @@ exports.sourceNodes = async (
   if (configOptions.taxonomies && configOptions.taxonomies.length) {
     for (let i = 0; i < configOptions.taxonomies.length; i++) {
       const taxonomyName = configOptions.taxonomies[i];
-      const apiUrl = `${configOptions.baseUrl}/${configOptions.apiUrl}/taxonomies/${taxonomyName}/terms`;
+      const apiUrl = `${normalizedBaseUrl}/${restApiRoutePrefix}/taxonomies/${taxonomyName}/terms`;
       const response = await fetch(apiUrl);
       const { data } = await response.json();
 
@@ -107,7 +117,7 @@ exports.sourceNodes = async (
    * @returns {Node} - Gatsby Node
    */
   if (configOptions.globals) {
-    const apiUrl = `${configOptions.baseUrl}/${configOptions.apiUrl}/globals`;
+    const apiUrl = `${normalizedBaseUrl}/${restApiRoutePrefix}/globals`;
     const response = await fetch(apiUrl);
     const { data } = await response.json();
 
@@ -132,7 +142,7 @@ exports.sourceNodes = async (
    * @returns {Node} - Gatsby Node
    */
   if (configOptions.users) {
-    const apiUrl = `${configOptions.baseUrl}/${configOptions.apiUrl}/users`;
+    const apiUrl = `${normalizedBaseUrl}/${restApiRoutePrefix}/users`;
     const response = await fetch(apiUrl);
     const { data } = await response.json();
 
@@ -159,7 +169,7 @@ exports.sourceNodes = async (
   if (configOptions.assets && configOptions.assets.length) {
     for (let i = 0; i < configOptions.assets.length; i++) {
       const assetName = configOptions.assets[i];
-      const apiUrl = `${configOptions.baseUrl}/${configOptions.apiUrl}/assets/${assetName}`;
+      const apiUrl = `${normalizedBaseUrl}/${restApiRoutePrefix}/assets/${assetName}`;
       const response = await fetch(apiUrl);
       const { data } = await response.json();
 
