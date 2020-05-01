@@ -1,1 +1,5 @@
 node_modules
+.vscode
+helpers
+gatsby-node.js
+gatsby-source-statamic-0.1.0.tgz
