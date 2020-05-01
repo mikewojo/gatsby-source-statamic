@@ -1,6 +1,7 @@
 const fetch = require('node-fetch');
 const capitalizeName = require('./helpers/capitalize');
 const httpExceptionHandler = require(`./helpers/http-exception-handler`);
+const normalizeBaseUrl = require(`./helpers/normalize-base-url`);
 
 exports.sourceNodes = async (
   { actions, createNodeId, createContentDigest },
