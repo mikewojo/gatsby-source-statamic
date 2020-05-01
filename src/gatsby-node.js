@@ -31,11 +31,10 @@ exports.sourceNodes = async (
 
       try {
         const response = await fetch(apiUrl);
+        const { data } = await response.json();
       } catch (e) {
         httpExceptionHandler(e);
       }
-
-      const { data } = await response.json();
 
       data.forEach((item) => {
         const customUrlNameCapitalized = capitalizeName(customUrlName);
