@@ -1,6 +1,6 @@
 const fetchStatamicResource = require('./helpers/fetchStatamicResource');
 const capitalizeName = require('./helpers/capitalize');
-const normalizeBaseUrl = require(`./helpers/normalize-base-url`);
+const normalizeBaseUrl = require(`./helpers/normalizeBaseUrl`);
 
 exports.sourceNodes = async (
   { actions, createNodeId, createContentDigest },
