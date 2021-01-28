@@ -132,7 +132,7 @@ exports.sourceNodes = async (
     data.forEach((item) => {
       createNode({
         ...item,
-        id: createNodeId(`Global`),
+        id: createNodeId(`Global-${item.handle}`),
         parent: null,
         children: [],
         internal: {
